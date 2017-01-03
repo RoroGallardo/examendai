@@ -8,6 +8,9 @@ and open the template in the editor.
     <head>
         <title>MODIFICAR SOLICITUD  </title>
          <meta charset="UTF-8">
+         <link rel="stylesheet" type="text/css" href="css/animate.css">
+          <link rel="stylesheet" type="text/css" href="css/Secundario.css">
+          <script src="js/validarut.js" type="text/javascript"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="font-awesome-4.5.0/font-awesome.css">
@@ -15,10 +18,13 @@ and open the template in the editor.
         <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
     </head>
-    <body>
-        
+    <body style="background-image: url(images/administracionfondo.png); background-size: cover">
+        <?php        
+        include_once './inc/comlog.php';
+        include_once './inc/navSigned.php'; ?>
+        <br><br>
        
-<div class="container slideInLeft animated " style="background-color: rgba(146, 123, 204, 0.50); ">
+<div class="container slideInLeft animated " style="background-color: rgba(255, 0, 0, 0.7);  ">
     <div class="">
         <form action="verSolicitud.php" method="POST" name="frm">
             <div class="">
@@ -26,7 +32,7 @@ and open the template in the editor.
                 <div class="form-group col-md-4">
                     <label for="InputMessage" class="col-xs-12 " style="text-align: center">BUSCAR POR RUT</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="InputId" name="rut" placeholder="RUT 99.999.999-9" required>
+                        <input type="text" class="form-control" id="" name="rut" onchange="validarut(document.frm.rut.value);" placeholder="RUT 99.999.999-9" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                     </div>
                     <br>
@@ -41,9 +47,9 @@ and open the template in the editor.
     
         <br><br>
         
-<div class="container slideInLeft animated " style="background-color: rgba(146, 123, 204, 0.50); ">
+<div class="container slideInRight animated " style="background-color: rgba(255, 0, 0, 0.7);  ">
     <div class="">
-        <form action="listarPorFechas.php" method="POST" name="frm">
+        <form action="listarPorFechas.php" method="POST" name="fr">
             <div class="">
                 <div class="col-md-12">
                     <label for="InputMessage" class="col-xs-12 " style="text-align: center">BUSQUEDA POR FECHAS</label>
@@ -72,7 +78,8 @@ and open the template in the editor.
 </div> 
         
      <script src="bootstrap/js/jquery.js" ></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>   
+<script src="bootstrap/js/bootstrap.min.js"></script>  
+<?php include_once './inc/footer.php'; ?>
         
     </body>
 </html>

@@ -5,9 +5,7 @@
  *
  * @author Rodrigo Gallardo
  */
-include '../dto/Comuna.php';
-include '../dto/Provincia.php';
-//require  '../sql/configuracion.php';
+include_once '../sql/Conexion.php';
 class ComunasDao {
 
      

@@ -12,28 +12,38 @@
         <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
     </head>
-    <body>
+    <body style="background-image:  url(images/fondorespuesta.jpg)">
+        <br><br>
         <?php
         include_once '../controlador/SolicitudDao.php';
         $estado = SolicitudDao::buscarEstado($_GET["rut"]);
         ?>
-    <div class="container slideInLeft animated " style="background-color: rgba(146, 123, 204, 0.50); ">
+          <div class="col-md-4"></div> 
+        <div class="col-md-12">
+              <div class="col-md-4"></div> 
+    <div class="container slideInLeft animated " style="text-align: center; background-color: rgba(255, 0, 0, 0.7);  ">
     <div class="row">
         <div class="">
+     
              <div class="form-group col-md-4" style="text-align: center">
                   
                     <div class="input-group">
-                        <label class="">Estado Solicitud : </label>  
-                  <?php  echo '    <h1 class="">'.$estado.'</h1>'; ?>
+                        <label style="text-align: center" class="">Estado Solicitud : </label>  
+                  <?php  echo '    <h1 class="">'.$estado.'</h1>';
+                  if($estado=="aprobado"){
+                      
+                       echo '    <h3 class="Un ejecutivo se comunicara con usted dentro de 7 dias habiles"></h3>';
+                  } ?>
                     </div>
+                 
              </div>
     
-            
-            
+          
         </div>
+    </div>  <input type="submit" class="btn btn-warning center-block    " onclick="history.go(-1);" value="VOLVER" />
+            
+        
     </div>
-        
-        
      <script src="bootstrap/js/jquery.js" ></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>   
         

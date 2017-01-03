@@ -30,29 +30,22 @@ class SolicitudDao {
     
     
      public static function buscarEstado($rut) {
-        $respuesta = "no existe solicitud"      ;
+      $respuesta = "No Existe Solicitud";
         try {
             $pdo = new Conexion();            
-            $stmt = $pdo->prepare("select estado from solicitud join postulante on (solicitud.rutpostulante = postulante.rut) where postulante.rut=2; ");
+            $stmt = $pdo->prepare("select estado from solicitud where rutpostulante=?");
             $stmt->bindParam(1, $rut);           
             $stmt->execute();            
             $resultado=$stmt->fetchAll();  
-         
+//         select estado from solicitud join postulante on (solicitud.rutpostulante = postulante.rut) where postulante.rut=2;
             foreach ($resultado as $value) {
-                if($value["estado"]=="rechazado"){
-                  $respuesta = "fue rechazada";
-                }elseif ($value["estado"]=="aprobado") {
-                    $respueste = "ha sido aprobada";
-                }elseif ($value["estado"]=="pendiente") {
-                    $respuesta="esta pendiente";
-                }
+              $respuesta = $value["estado"];
                 
             }
             $pdo = null;            
         } catch (PDOException $exc) {
-            echo "Error al buscar por patente: " . $exc->getMessage();
         }
-        return $respuesta;        
+        return $respuesta;
     }
     
     public static function listar() {
@@ -96,10 +89,6 @@ class SolicitudDao {
             $stmt->bindParam(1, $estado);           
                        
             $stmt->bindParam(2, $rut);           
-            $nombre= $dto->getNombre();
-            $appaterno=$dto->getApPaterno();
-            $apmaterno=$dto->getApMaterno();
-            $rut=$dto->getRut();
             $stmt->execute();
             if($stmt->rowCount()>=1)
                 return TRUE;
@@ -118,7 +107,7 @@ class SolicitudDao {
         try {
             $pdo = new Conexion();            
             $stmt = $pdo->prepare("select solicitud.*, postulante.* from solicitud join postulante on"
-                    . " (solicitud.rutpostulante = postulante.rut) where fecha between ? and ?;");
+                    . " (solicitud.rutpostulante = postulante.rut) where fecha between ? and ?");
             $stmt->bindParam(1, $desde);           
             $stmt->bindParam(2, $hasta);           
             $stmt->execute();            
@@ -132,4 +121,6 @@ class SolicitudDao {
         }
         return $array;        
     }
+    
+       
 }

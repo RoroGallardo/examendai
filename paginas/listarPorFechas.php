@@ -6,7 +6,7 @@ Rodrigo Gallardo++
 <html>
     <head>
 <meta charset="UTF-8">
-        <title>Lista De Solicitudes</title>
+        <title>Lista de Solicitudes por Fecha</title>
         <link rel="stylesheet" type="text/css" href="css/animate.css">
          <link rel="stylesheet" type="text/css" href="css/Secundario.css">
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
@@ -19,13 +19,12 @@ Rodrigo Gallardo++
         <?php
         include_once '../controlador/SolicitudDao.php';
         include_once './inc/comlog.php';
-        include_once './inc/navSigned.php';
-        $solicitudes = SolicitudDao::listar();
+        include_once './inc/navSigned.php';    
+        $solicitudes = SolicitudDao::buscarEntreFechas($_POST["calDesde"], $_POST["calHasta"]);
         ?>
         <br><br>
-        
 <form name="frm" action="addReserva.php" method="POST">
-     <div class="container fadeIn animated" style="background-color: rgba(255, 0, 0, 0.6); ">
+     <div class="container fadeIn animated " style="background-color: rgba(255, 0, 0, 0.7);  border-top-width: 20px ">
         <form role="form">
             <div class="">
                 <h1 class=" " style="text-align: center" >LISTADO DE SOLICITUDES</h1>
@@ -69,18 +68,10 @@ Rodrigo Gallardo++
                     <input type="text" hidden name="txtRutElim" value="'.$value["rut"].'" />
                     <input type="submit" value="ELIMINAR" class="btn btn-danger pull-left" name="btnELIM" />
                     </form>   
-                    
-
-
-                </td>';
-                    echo '  </tr>'; 
-                             }
-                            ?>
+                </td>  </tr>';}?>
                         </tbody>
                     </table>   
                 </div>
-                
-                
             </div>
         </form>
 </form> 
@@ -88,8 +79,10 @@ Rodrigo Gallardo++
 <br>
  <br>
 <br>
-<?php include_once './inc/footer.php'; ?>
 <script src="bootstrap/js/jquery.js" ></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+
+<?php include_once './inc/footer.php'; ?>
+
     </body>
 </html>

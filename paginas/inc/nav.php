@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-default navbar-inverse" role="navigation">
+<nav class="navbar navbar-default navbar-inverse fadeInDown animated" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -9,8 +9,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" style="padding: 7px;" href="index.php" title="">
-                    <img src="../images/logo.png" border="0" style="vertical-align: middle;">
+      <a class="navbar-brand" style="padding: 7px" href="index.php" title="">
+          <img src="images/logo.png" border="0" class="im" style="vertical-align: middle;">
      </a>
     </div>
 
@@ -30,14 +30,14 @@
 				<li>
 					 <div class="row">
 							<div class="col-md-12">
-								 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+								 <form class="form" role="form" method="POST" action="validarLog.php" name="loginform" accept-charset="UTF-8" id="login-nav">
 										<div class="form-group">
 											 <label class="sr-only" for="">Ingrese Rut</label>
-											 <input type="text" class="form-control" name="rut" id="exampleInputEmail2" placeholder="RUT" required>
+                                                                                         <input type="text" class="form-control" name="rutl"  onchange="validalogin(document.frm.rutl.value);" placeholder="XX.XXX.XXX-X" required>
 										</div>
 										<div class="form-group">
 											 <label class="sr-only" for="exampleInputPassword2">Password</label>
-											 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                                                                         <input type="password" name="pass" class="form-control" id="" placeholder="Password" required>
                                           
 										</div>
 										<div class="form-group">
@@ -47,7 +47,7 @@
 								 </form>
 							</div>
 							<div class="bottom text-center">
-								No Tienes Cuenta ? <a href="#"><b>Crea Una!</b></a>
+                                                            CREAR NUEVA CUENTA PARA ADMINISTRACION <a href="    registrarUsuario.php"><b>CREAR</b></a>
 							</div>
 					 </div>
 				</li>

@@ -29,34 +29,34 @@ if($_POST["optradio"]=="femenino"){
 
 
 if ($_POST["chkHijos"]=="si") {
-      $dto->setHijos($_POST["txtHijos"]);
+    $dto->setHijos($_POST["txtHijos"]);
 }else{
-      $dto->setHijos(0);
+    $dto->setHijos(0); 
 }
 
 
-if($_POST["chkEnfermedad"]==on){
+if($_POST["chkEnfermedad"]=="si"){
 }else{
-    $dto->setEnfermedadCronica("si");
+    $dto->setEnfermedadCronica("no");
 }
 
 
 
-if(!PostulanteDao::existePostulante($_POST['rut'])){
-   if(PostulanteDao::agregarPostulante($dto)){
-       SolicitudDao::agregarSolicitud($_POST["rut"]);
+if(PostulanteDao::existePostulante($_POST['rut'])){
+   if(PostulanteDao::modificarPostulante($dto)){
+       SolicitudDao::cambiarEstado($_POST["rdSoli"], $_POST["rut"]);
     echo "<script type=\"text/javascript\""
-    . ">alert(\"Solicitud ingresada al sistema\");</script>"; 
-      echo'<script>window.location="index.php";</script>';   
+    . ">alert(\"Solicitud modificada con exito\");</script>"; 
+      echo'<script>window.location="listarSolicitudes.php";</script>';   
 }else{
     echo "<script type=\"text/javascript\""
-    . ">alert(\"Registro NO guardado\");</script>";  
-   echo'<script>window.location="formularioPreAprovacion.php";</script>';   
+    . ">alert(\"Registro No Modificado, reinicie operacion.\");</script>";  
+   echo'<script>window.location="listarSolicitudes.php";</script>';   
 } 
 }  else {
 
    echo "<script type=\"text/javascript\""
-    . ">alert(\"ESTE RUT YA CUENTA CON UNA SOLICITUD, PORFAVO VERIFICA SU ESTADO\");</script>"; 
-  echo'<script>window.location="formularioPreAprovacion.php";</script>';   
+    . ">alert(\"ERROR AL MODIFICAR, reinicie operacion\");</script>"; 
+  echo'<script>window.location="listarSolicitudes.php";</script>';   
     
 }

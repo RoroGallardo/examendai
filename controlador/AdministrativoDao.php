@@ -5,12 +5,13 @@
  *
  * @author Rodrigo Gallardo
  */
+include '../sql/Conexion.php';
 class AdministrativoDao {
      public static function agregarAdministrativo($dto) {
         try {
              $pdo = new Conexion();
-            $stmt = $pdo->prepare("INSERT INTO administrativo (rut, nombre, appaterno,apmaterno"
-                    . "contraseña,)" .
+            $stmt = $pdo->prepare("INSERT INTO administrativo (rut, nombre, appaterno,apmaterno,"
+                    . "pass)" .
                     " values (?,?,?,?,?)");
            
             $stmt->bindParam(1, $rut);
@@ -122,7 +123,7 @@ class AdministrativoDao {
     public static function modificarContraseña($rut,$nuevaContraseña) {        
         try {
             $pdo = new Conexion();            
-            $stmt = $pdo->prepare("UPDATE admidnistrativo SET contraseña=?"
+            $stmt = $pdo->prepare("UPDATE admidnistrativo SET pass=?"
                     . " WHERE rut=?");
             $stmt->bindParam(1, $rut);           
             $stmt->bindParam(2, $nuevaContraseña);           
@@ -155,6 +156,46 @@ class AdministrativoDao {
             return false;
         }
         return $array;
+        }
+        
+          public static function nombrePorRut($rut) {
+        $nombre="";
+        try {
+            $pdo = new Conexion();            
+            $stmt = $pdo->prepare("select nombre from administrativo where rut=? ");
+            $stmt->bindParam(1, $rut);           
+            $stmt->execute();            
+            $resultado=$stmt->fetchAll();  
+         
+            foreach ($resultado as $value) {
+                $nombre = $value["nombre"];
+            }
+            $pdo = null;            
+        } catch (PDOException $exc) {
+            echo "Error al buscar por patente: " . $exc->getMessage();
+        }
+        return $nombre;        
+    }
+    
+     public static function validarUsuario($user, $pass) {
+        $validado = false;
+        
+        try {
+        $pdo = new Conexion();
+        $stmt = $pdo -> prepare("select * from administrativo where rut = ? and pass = ? ");
+        $stmt->bindParam(1,$user);
+        $stmt->bindParam(2,$pass);
+       
+        $stmt->execute();
+            $resultado = $stmt->fetchAll();
+            foreach ($resultado as $value) {
+                $validado =true;
+            }
+            
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        }
+        return $validado;
         }
     
 }

@@ -122,7 +122,7 @@ class PostulanteDao {
     public static function eliminarPostulante($rut){
         try {
             $pdo = new Conexion();
-            $stmt = $pdo->prepare("delete from postulante where rut = ?");
+            $stmt = $pdo->prepare("delete from postulante where rut = ? ");
             $stmt->bindParam(1, $rut);
             $stmt->execute();
             $pdo = null;
@@ -134,17 +134,49 @@ class PostulanteDao {
     }
     
     
-    public static function modificarCliente($dto) {        
+    public static function modificarPostulante($dto) {        
         try {
             $pdo = new Conexion();            
-            $stmt = $pdo->prepare("UPDATE cliente SET nombre=?,"
-                    . "fecha_nacimiento=? WHERE rut=?");
-            $stmt->bindParam(1, $nombre);           
-            $stmt->bindParam(2, $fechaNacimiento);           
-            $stmt->bindParam(3, $rut);           
-            $nombre= $dto->getNombre();
-            $fechaNacimiento=$dto->getFechaNacimiento();
-            $rut=$dto->getRut();
+            $stmt = $pdo->prepare("UPDATE postulante SET nombre=?, apellidopaterno =?,apellidomaterno=?,"
+                    . "fechanacimiento=?,sexo=?,estadocivil=?,hijos=?,telefono=?,email=?,direccion=?, comuna=?,educacion=?,"
+                    . "renta=?,sueldoliquido=?,enfemedadcronica=?"
+                    . " WHERE rut=?");
+           
+            $stmt->bindParam(1, $nombre);
+            $stmt->bindParam(2, $appaterno);
+            $stmt->bindParam(3, $apmaterno);
+            $stmt->bindParam(4, $fecha);
+            $stmt->bindParam(5, $sexo);
+            $stmt->bindParam(6, $estadocivil);
+            $stmt->bindParam(7, $hijos);
+            $stmt->bindParam(8, $telefono);
+            $stmt->bindParam(9, $email);
+            $stmt->bindParam(10, $direccion);
+            $stmt->bindParam(11, $comuna);
+            $stmt->bindParam(12, $educacion);
+            $stmt->bindParam(13, $renta);
+            $stmt->bindParam(14, $sueldoLiquido);
+            $stmt->bindParam(15, $enfermedad);
+            $stmt->bindParam(16, $rut);
+            
+           
+            $nombre = $dto->getNombre();
+            $appaterno = $dto->getApellidoMaterno();
+            $apmaterno = $dto->getApellidoPaterno();
+            $fecha = $dto->getFechaNacimiesnto();
+            $sexo = $dto->getSexo();
+            $estadocivil = $dto->getEstadoCivil();
+            $hijos = $dto->getHijos();
+            $telefono = $dto->getTelefono();
+            $email = $dto->getEmail();
+            $direccion = $dto->getDireccion();
+            $comuna = $dto->getComuna();
+            $educacion = $dto->getEducacion();
+            $renta = $dto->getRenta();
+            $sueldoLiquido = $dto->getSueldoLiquido();
+            $enfermedad = $dto->getEnfermedadCronica();
+            $rut = $dto->getRut();
+             
             $stmt->execute();
             if($stmt->rowCount()>=1)
                 return TRUE;
@@ -157,6 +189,8 @@ class PostulanteDao {
         }
         return FALSE;        
     }
+    
+    
       public static function listar() {
              $array = new ArrayObject();
         try {

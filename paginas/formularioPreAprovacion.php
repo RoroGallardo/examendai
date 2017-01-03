@@ -9,6 +9,9 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title></title>
         
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+         <link rel="stylesheet" type="text/css" href="css/Secundario.css">
+         <script src="js/validarut.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="font-awesome-4.5.0/font-awesome.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -25,15 +28,15 @@ function pregunta(){
 
 
     </head>
-    <body>
+    <body style="background-image: url(images/oficinaoficina.jpg)">
         <?php
-        
-//       include '../controlador/ComunasDao.php';
-//       $comunas = ComunasDao::cargarNombresComunas();
+   include './inc/nav.php';     
+       include '../controlador/ComunasDao.php';
+       $comunas = ComunasDao::cargarNombresComunas();
         
 
         ?>
-<div class="container slideInLeft animated " style="background-color: rgba(146, 123, 204, 0.50); ">
+<div class="container slideInLeft animated " style="background-color: rgba(255, 0, 0, 0.7);  ">
     <div class="row">
         <form action="agregarPostulante.php" method="POST" name="frm">
             <div class="">
@@ -43,7 +46,7 @@ function pregunta(){
                         <div class="col-md-2"></div>
                 <div class="form-group col-md-4">
                     <div class="input-group">
-                        <input type="text" class="form-control" id="InputId" name="rut" placeholder="RUT 99.999.999-9" required>
+                        <input type="text" class="form-control" id="InputId" name="rut" onchange="validarut(document.frm.rut.value);" placeholder="RUT 99.999.999-9" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                     </div>
                 </div>
@@ -106,9 +109,9 @@ function pregunta(){
                         <select name="cmbComu" class="form-control" required>
                             <option>SELECCIONE COMUNA</option>
                             <?php
-//                                foreach ($comunas as $value) {
-//                                    echo " <option>".$value."</option>";
-//                                }
+                                foreach ($comunas as $value) {
+                                    echo " <option>".$value."</option>";
+                                }
                         ?>
                         </select>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
@@ -190,8 +193,8 @@ function pregunta(){
                 <div class="form-group col-xs-12 col-md-4">
                     <div class="input-group "  style="background-color: white">
                         <label class="checkbox-inline ">HIJOS </label> 
-                        <label class="checkbox-inline"><input type="checkbox" name="chkHijos" value="no">SI</label>
-                        <input type="number" class="col-md-pull-1 form-control-static" id="" name="txtHijos" placeholder="1" >
+                        <label class="checkbox-inline"><input type="checkbox" name="chkHijos" value="si">SI</label>
+                        <input type="number" class="col-md-pull-1 form-control-static" id="" name="txtHijos" placeholder="Cantidad de Hijos" >
                         <span class="input-group-addon "><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                     
@@ -210,14 +213,15 @@ function pregunta(){
                 <input type="submit" name="submit" id="submit" value="SOLICITAR CREDITO" onclick="" class="btn btn-success center-block">
             </div>
         </form>
-        
+        <br><br>
         </div>
     </div>
 </div>  
         
         
         
-        
-        
+<script src="bootstrap/js/jquery.js" ></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>    
+<?php include_once './inc/footer.php'; ?>
     </body>
 </html>

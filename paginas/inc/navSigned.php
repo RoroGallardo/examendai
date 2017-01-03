@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-default navbar-inverse" role="navigation">
+<nav class="navbar navbar-default navbar-inverse fadeInDown animated" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -9,21 +9,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" style="padding: 7px;" href="index.php" title="">
-                    <img src="../images/logo.png" border="0" style="vertical-align: middle;">
+      <a class="navbar-brand" style="padding: 7px; " href="indexAdmin.php" title="" >
+          <img src="images/logo.png" border="0" style="vertical-align: middle; ">
      </a>
-    </div>
+    </div>                                      
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.php">INICIO</a></li>
-        <li><a href="formularioPreAprovacion.php">SOLICITAR CREDITO</a></li>
-        <li><a href="quienesSomos.php">¿QUIENES SOMOS?</a></li>
+        <li class="active"><a href="indexAdmin.php">INICIO</a></li>
+        <li><a href="listarSolicitudes.php">LISTA DE SOLICITUDES</a></li>
+        <li><a href="buscarSolicitudes.php">BUSQUEDA DE SOLICITUDES</a></li>
       </ul>
-        <li><p class="navbar-text">NAVEGANDO COMO  </p></li>
+        <li><p class="navbar-text">NAVEGANDO COMO: <b>    <?php  echo $_SESSION["nombre"]; ?> </b> </p></li>
         
-        <li><a href="formularioPreAprovacion.php">CERRAR SESION</a></li>
+        <li><a href="logOut.php">CERRAR SESION</a></li>
          <ul class="nav navbar-nav navbar-right">
         
          
